@@ -1,14 +1,15 @@
 import express from "express";
-import get_all from "./PizzaService.js";
+import PizzaService from "./PizzaService.js";
 
 const app = express();
 const port = 3000;
+let r = await PizzaService.delete_by_id(2);
 
-app.get('/', (req, res) => {
-    let all = get_all();
-    res.send(all);
-})
+app.get('/', async (req, res) => {
+    res.send(r);
+});
 
 app.listen(port, () => {
     console.log("listen");
-})
+    console.log(r);
+});
